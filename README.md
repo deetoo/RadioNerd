@@ -3,7 +3,7 @@ My scraping and stats gathering mess of code for iHeart radio
 
 
 DB info:
-
+```
 DB name: radio
 
 MariaDB [radio]> desc ArtistData;
@@ -39,3 +39,4 @@ MariaDB [radio]> desc Lonestar925;
 | trackid  | int(11)  | YES  |     | NULL    |       |
 | artistid | int(11)  | YES  |     | NULL    |       |
 +----------+----------+------+-----+---------+-------+
+```
