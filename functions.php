@@ -1,4 +1,9 @@
 <?php
+// note: c.php contains db connection and credentials that include:
+// $uname
+// $pass
+// $db
+// you need to create that file, and set those vars for this to work.
 
 // function that takes a 'type' argument, ie: Song, or Band, and the id integer for it, 
 // which gets translated into the actual song name, or band name.
