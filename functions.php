@@ -28,6 +28,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 }
 
 
+// count total number of distinct bands in the DB
 function CountBands() {
 require("c.php");
 
@@ -47,6 +48,7 @@ print "<td>$numberofBands</td><td>unique bands</td></tr></table>\n";
 }
 
 
+// count total number of distinct songs in the DB
 function DistinctSongs() {
 require("c.php");
 print "<table>\n<tr>";
@@ -63,6 +65,8 @@ print "<td>$numberofSongs</td><td>unique songs</td></tr></table>\n";
 }
 
 
+
+//  display the first, and last song entered into each radio station (as $station argument) table, ex: Lonestar925, WMMS, etc
 function FirstLast($station) {
 require("c.php");
 
@@ -80,7 +84,6 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 
         $first = "select s.songname,a.artistname, p.playtime from $station as p, SongData as s, ArtistData as a WHERE p.trackid = s.trackid AND p.artistid = a.artistid order by p.playtime asc limit 1;";
         $last = "select s.songname,a.artistname, p.playtime from $station as p, SongData as s, ArtistData as a WHERE p.trackid = s.trackid AND p.artistid = a.artistid order by p.playtime desc limit 1;";
-//	$totalcount = "SELECT * FROM songs";
 
 	$connStatus = $mysqli->query($totalcount);
 	$numberofRows = mysqli_num_rows($connStatus);
@@ -109,13 +112,11 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
                 print "<!-- end entry -->\n\n";
                 }
         }
-	// print "<tr><td align=right>$numberofRows</td><td colspan=2>songs in database</td></tr>\n";
 	print "</table>";
-	// DistinctSongs();
-	// CountBands();
 }
 
 
+// display the last 10 songs played by radio station (as $station) argument.
 function LastTen( $station ) {
 require("c.php");
 
@@ -153,6 +154,7 @@ print "</tr>\n";
 	print "</table>\n";
 }
 
+// display the 10 most frequently played bands for $station, with an $option of 0 for all history, and 1 for yesterday
 function MostPlayedBands( $station, $option ) {
 require("c.php");
 
@@ -191,19 +193,6 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
                 }
         }
 
-
-//
-//	if ($station == "WMMS" ) 
-//	{
-//	$sql = "select artistid, count(*) as artistcount from WMMS group by artistid order by artistcount desc limit 10;";
-//	}
-//	else
-//	{
-//	$sql = "select artistid, count(*) as artistcount from Lonestar925 group by artistid order by artistcount desc limit 10;";
-//	}
-
-
-//
         $query = $mysqli->query( $sql );
 
         if( $query ) {
@@ -223,7 +212,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 	print"</table>";
 }
 
-
+// display the 10 most frequently played songs for $station, with an $option of 0 for all history, and 1 for yesterday
 function MostPlayedSongs( $station, $option ) {
 
 require("c.php");
