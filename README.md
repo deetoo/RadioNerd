@@ -25,7 +25,7 @@ and a total of 6217 songs have been played.
 
 I kind of feel like I was right.
 
-#Disclaimer
+# Disclaimer
 This is for me, so there are several hardcoded radio stations in the queries within functions.php
 YOU will have to make changes as needed if you use this stuff. I'll eventually make it easier to configure.
 
