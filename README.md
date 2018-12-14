@@ -1,6 +1,7 @@
 # RadioNerd
 My scraping and stats gathering mess of code for iHeart radio.
 
+# Background
 Actually, this was a project that started after I convinced myself that my local Classic Rock radio station 
 was playing the same songs over and over. I was complaining to a co-worker, Bobbie Turner, and I discussed ways to track this.
 I figured that anything from about 1965 till about 2000 could be 
@@ -24,7 +25,11 @@ and a total of 6217 songs have been played.
 
 I kind of feel like I was right.
 
+#Disclaimer
+This is for me, so there are several hardcoded radio stations in the queries within functions.php
+YOU will have to make changes as needed if you use this stuff. I'll eventually make it easier to configure.
 
+# Installing
 Okay, so on to the technical stuff..
 
 scraper.sh needs to be edited to include the station URL you want to scrape, also db connection info needs updating.
