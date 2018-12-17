@@ -1,6 +1,6 @@
 # RadioNerd
 My scraping and stats gathering mess of code for iHeart radio.
-
+![](images/screenshot.png)
 # Background
 Actually, this was a project that started after I convinced myself that my local Classic Rock radio station *(Lonestar 92.5)* 
 was playing the same songs over and over. I was complaining to a co-worker, Bobbie Turner, and I discussed ways to track this.
