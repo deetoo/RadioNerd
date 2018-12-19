@@ -169,29 +169,14 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 	print "<table><tr><th>#</th><th>Band/Artist</th><th>Times Played</th></tr>\n";
 
 
-	if( $station == "WMMS" )
-        {
                 if( $option == "1" )
                 {
-                        $sql = "SELECT artistid, count(*) AS artistcount FROM WMMS WHERE playtime > date(now()) -1 GROUP BY artistid ORDER BY artistcount DESC LIMIT 10;";
+                        $sql = "SELECT artistid, count(*) AS artistcount FROM $station WHERE playtime > date(now()) -1 GROUP BY artistid ORDER BY artistcount DESC LIMIT 10;";
                         }
                         else
                         {
-                        $sql = "select artistid, count(*) as artistcount from WMMS group by artistid order by artistcount desc limit 10;";
+                        $sql = "select artistid, count(*) as artistcount from $station group by artistid order by artistcount desc limit 10;";
                 }
-        }
-
-	if( $station == "Lonestar925" )
-        {
-                if( $option == "1" )
-                {
-                        $sql = "SELECT artistid, count(*) AS artistcount FROM Lonestar925 WHERE playtime > date(now()) -1 GROUP BY artistid ORDER BY artistcount DESC LIMIT 10;";
-                        }
-                        else
-                        {
-                        $sql = "select artistid, count(*) as artistcount from Lonestar925 group by artistid order by artistcount desc limit 10;";
-                }
-        }
 
         $query = $mysqli->query( $sql );
 
@@ -227,28 +212,14 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
         }
 	  print "<table>\n<tr><th>#</th>\n<th>Song Title</th><th>Times Played</th></tr>\n<tr>\n";
 
-	if( $station == "WMMS") 
-	{
 		if( $option == "1" ) 
 		{  // 0 = alltime, 1 = yesterday
 			$sql = "SELECT trackid, count(*) AS songcount FROM WMMS WHERE playtime > date(now()) -1 GROUP BY trackid ORDER BY songcount DESC LIMIT 10;";
 			}
 			else // assume alltime
 			{
-			$sql = "select trackid, count(*) as songcount from WMMS group by trackid order by songcount desc limit 10;";
-		}	
-	}
+			$sql = "select trackid, count(*) as songcount from $station group by trackid order by songcount desc limit 10;";
 
-	if( $station == "Lonestar925" )
-	{
-		if( $option == "1" )
-		{
-        		$sql = "SELECT trackid, count(*) AS songcount FROM Lonestar925 WHERE playtime > date(now()) -1 GROUP BY trackid ORDER BY songcount DESC LIMIT 10;";
-			}
-			else
-			{
-			$sql = "select trackid, count(*) as songcount from Lonestar925 group by trackid order by songcount desc limit 10;";
-		}
 	}
         $query = $mysqli->query( $sql );
 
