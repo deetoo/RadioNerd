@@ -74,14 +74,26 @@ display: flex;
 
 .FirstLast {
         flex: 4;
+	background-color: #829295;
+	border: 1px solid #777777;
+	margin: 5;
+	padding: 3;
 }
 
 .LastTen {
         flex: 2;
+	background-color: #829295;
+	border: 1px solid #777777;
+	margin: 5;
+	padding: 3;
 }
 
 .Dataz {
         flex: 1;
+	background-color: #829295;
+	border: 1px solid #777777;
+	margin: 5;
+	padding: 3;
 }
 </style>
 </head>
