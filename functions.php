@@ -23,7 +23,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 }
 
 
-function BandCount( $station, $option ) {
+function BandCount( $station, $option ) { // option 0 = all time, 1 = yesterday
 require("c.php");
 print "<table>\n<tr>";
 
@@ -47,6 +47,32 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
         $numberofBands = mysqli_num_rows($query);
 
 print "<td>$numberofBands</td><td>unique bands</td><td>$when</td></tr></table>\n";
+}
+
+function SongCount( $station, $option ) { // option 0 = all time, 1 = yesterday
+require("c.php");
+print "<table>\n<tr>";
+
+
+$mysqli = new mysqli('localhost', $uname, $pass, $db );
+        if( $mysqli->connect_error ) {
+        die('Connect error: ' . $mysqli->connect_errno . ' : ' . $mysqli->connect_error );
+        }
+
+        if ( $option == "1" )
+        { // yesterday
+        $sql = "select distinct trackid from $station where playtime > date(now()) -1;";
+        $when = "Yesterday";
+        }
+        else
+        { // total
+        $sql = "select distinct trackid from $station;";
+        $when = "All time";
+        }
+        $query = $mysqli->query($sql);
+        $numberofSongs = mysqli_num_rows($query);
+
+print "<td>$numberofSongs</td><td>unique songs</td><td>$when</td></tr></table>\n";
 }
 
 
