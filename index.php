@@ -113,6 +113,8 @@ FirstLast("WMMS");
 print "<br><b>Overall Statistics - WMMS </b><br />";
 BandCount("WMMS", "1");
 BandCount("WMMS", "0");
+SongCount("WMMS", "1");
+SongCount("WMMS", "0");
 ?>
 	</center>
 	</div>
@@ -122,6 +124,8 @@ BandCount("WMMS", "0");
 print "<br><b>Overall Statistics - Lonestar 92.5</b><br />";
 BandCount("Lonestar925", "1");
 BandCount("Lonestar925", "0");
+SongCount("Lonestar925", "1");
+SongCount("Lonestar925", "0");
 ?>
         </center>
         </div>
