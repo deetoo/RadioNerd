@@ -1,9 +1,4 @@
 <?php
-// note: c.php contains db connection and credentials that include:
-// $uname
-// $pass
-// $db
-// you need to create that file, and set those vars for this to work.
 
 // function that takes a 'type' argument, ie: Song, or Band, and the id integer for it, 
 // which gets translated into the actual song name, or band name.
@@ -28,10 +23,8 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 }
 
 
-// count total number of distinct bands in the DB
-function CountBands() {
+function BandCount( $station, $option ) {
 require("c.php");
-
 print "<table>\n<tr>";
 
 
@@ -40,15 +33,23 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
         die('Connect error: ' . $mysqli->connect_errno . ' : ' . $mysqli->connect_error );
         }
 
-	$sql = "SELECT DISTINCT artistid from ArtistData";
-	$query = $mysqli->query($sql);
-	$numberofBands = mysqli_num_rows($query);
-	
-print "<td>$numberofBands</td><td>unique bands</td></tr></table>\n";
+	if ( $option == "1" )
+	{ // yesterday
+        $sql = "select distinct artistid from $station where playtime > date(now()) -1;";
+	$when = "Yesterday";
+	}
+	else
+	{ // total
+	$sql = "select distinct artistid from $station;";
+	$when = "All time";
+	}
+        $query = $mysqli->query($sql);
+        $numberofBands = mysqli_num_rows($query);
+
+print "<td>$numberofBands</td><td>unique bands</td><td>$when</td></tr></table>\n";
 }
 
 
-// count total number of distinct songs in the DB
 function DistinctSongs() {
 require("c.php");
 print "<table>\n<tr>";
@@ -65,8 +66,6 @@ print "<td>$numberofSongs</td><td>unique songs</td></tr></table>\n";
 }
 
 
-
-//  display the first, and last song entered into each radio station (as $station argument) table, ex: Lonestar925, WMMS, etc
 function FirstLast($station) {
 require("c.php");
 
@@ -84,6 +83,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 
         $first = "select s.songname,a.artistname, p.playtime from $station as p, SongData as s, ArtistData as a WHERE p.trackid = s.trackid AND p.artistid = a.artistid order by p.playtime asc limit 1;";
         $last = "select s.songname,a.artistname, p.playtime from $station as p, SongData as s, ArtistData as a WHERE p.trackid = s.trackid AND p.artistid = a.artistid order by p.playtime desc limit 1;";
+//	$totalcount = "SELECT * FROM songs";
 
 	$connStatus = $mysqli->query($totalcount);
 	$numberofRows = mysqli_num_rows($connStatus);
@@ -112,11 +112,13 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
                 print "<!-- end entry -->\n\n";
                 }
         }
+	// print "<tr><td align=right>$numberofRows</td><td colspan=2>songs in database</td></tr>\n";
 	print "</table>";
+	// DistinctSongs();
+	// CountBands();
 }
 
 
-// display the last 10 songs played by radio station (as $station) argument.
 function LastTen( $station ) {
 require("c.php");
 
@@ -154,7 +156,6 @@ print "</tr>\n";
 	print "</table>\n";
 }
 
-// display the 10 most frequently played bands for $station, with an $option of 0 for all history, and 1 for yesterday
 function MostPlayedBands( $station, $option ) {
 require("c.php");
 
@@ -178,6 +179,8 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
                         $sql = "select artistid, count(*) as artistcount from $station group by artistid order by artistcount desc limit 10;";
                 }
 
+
+
         $query = $mysqli->query( $sql );
 
         if( $query ) {
@@ -197,7 +200,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 	print"</table>";
 }
 
-// display the 10 most frequently played songs for $station, with an $option of 0 for all history, and 1 for yesterday
+
 function MostPlayedSongs( $station, $option ) {
 
 require("c.php");
@@ -214,13 +217,13 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 
 		if( $option == "1" ) 
 		{  // 0 = alltime, 1 = yesterday
-			$sql = "SELECT trackid, count(*) AS songcount FROM WMMS WHERE playtime > date(now()) -1 GROUP BY trackid ORDER BY songcount DESC LIMIT 10;";
+			$sql = "SELECT trackid, count(*) AS songcount FROM $station WHERE playtime > date(now()) -1 GROUP BY trackid ORDER BY songcount DESC LIMIT 10;";
 			}
 			else // assume alltime
 			{
 			$sql = "select trackid, count(*) as songcount from $station group by trackid order by songcount desc limit 10;";
+		}	
 
-	}
         $query = $mysqli->query( $sql );
 
         if( $query ) {

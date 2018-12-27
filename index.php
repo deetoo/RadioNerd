@@ -77,7 +77,7 @@ display: flex;
 }
 
 .LastTen {
-        flex: 1;
+        flex: 2;
 }
 
 .Dataz {
@@ -95,7 +95,6 @@ include_once("functions.php");
 
 <div class="wrapper">
      <div class="FirstLast">
-	<center>
 <?php
 print "<br><b>Lonestar 92.5</b><br />";
 FirstLast("Lonestar925");
@@ -111,12 +110,22 @@ FirstLast("WMMS");
 
 	<div class="FirstLast">
 <?php
-print "<br><b>Overall Statistics</b><br />";
-CountBands();
-DistinctSongs();
+print "<br><b>Overall Statistics - WMMS </b><br />";
+BandCount("WMMS", "1");
+BandCount("WMMS", "0");
 ?>
 	</center>
 	</div>
+
+        <div class="FirstLast">
+<?php
+print "<br><b>Overall Statistics - Lonestar 92.5</b><br />";
+BandCount("Lonestar925", "1");
+BandCount("Lonestar925", "0");
+?>
+        </center>
+        </div>
+
 </div>
 
 
