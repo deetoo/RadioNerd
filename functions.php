@@ -122,7 +122,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
                         $title = stripslashes($row['songname']);
                         $playtime = stripslashes($row['playtime']);
                 print "<!-- start entry -->\n";
-	print "<tr><td><a href=\"query.php?band=$band\">$band</a></td><td><a href=\"query.php?title=$title\">$title</a></td><td>$playtime</td></tr>\n";
+	print "<tr><td><a href=\"q.php?band=$band\">$band</a></td><td><a href=\"q.php?title=$title\">$title</a></td><td>$playtime</td></tr>\n";
                 print "<!-- end entry -->\n\n";
                 }
         }
@@ -134,14 +134,11 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
                         $title = stripslashes($row['songname']);
                         $playtime = stripslashes($row['playtime']);
                 print "<!-- start entry -->\n";
-	print "<tr><td><a href=\"query.php?band=$band\">$band</a></td><td><a href=\"query.php?title=$title\">$title</a></td><td>$playtime</td></tr>\n";
+	print "<tr><td><a href=\"q.php?band=$band\">$band</a></td><td><a href=\"q.php?title=$title\">$title</a></td><td>$playtime</td></tr>\n";
                 print "<!-- end entry -->\n\n";
                 }
         }
-	// print "<tr><td align=right>$numberofRows</td><td colspan=2>songs in database</td></tr>\n";
 	print "</table>";
-	// DistinctSongs();
-	// CountBands();
 }
 
 
@@ -160,7 +157,7 @@ print "<tr>\n";
 print "<th>#</th><th>Band/Artist</th><th>Song Title</th><th>Play Date/Time</th>\n";
 print "</tr>\n";
 
-        $sql = "select s.songname,a.artistname, p.playtime from $station as p, SongData as s, ArtistData as a WHERE p.trackid = s.trackid AND p.artistid = a.artistid order by p.playtime desc limit 10";
+        $sql = "select s.songname,a.artistname, p.playtime, a.artistid, p.trackid from $station as p, SongData as s, ArtistData as a WHERE p.trackid = s.trackid AND p.artistid = a.artistid order by p.playtime desc limit 10";
 
         $query = $mysqli->query( $sql );
 
@@ -170,10 +167,12 @@ print "</tr>\n";
                         $band = stripslashes($row['artistname']);
                         $title = stripslashes($row['songname']);
                         $playtime = stripslashes($row['playtime']);
+			$trackid = stripslashes($row['trackid']);
+			$artistid = stripslashes($row['artistid']);
 
                 print "<!-- start entry -->\n";
                 print "<tr>\n";
-                print "<td>$count</td><td><a href=\"query.php?band=$band\">$band</a></td><td><a href=\"query.php?title=$title\">$title</a></td><td>$playtime</td>\n";
+                print "<td>$count</td><td><a href=\"q.php?band=$artistid\">$band</a></td><td><a href=\"q.php?title=$trackid\">$title</a></td><td>$playtime</td>\n";
                 print "</tr>\n";
                 print "<!-- end entry -->\n\n";
                 $count++;
