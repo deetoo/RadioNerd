@@ -95,6 +95,14 @@ display: flex;
 	margin: 5;
 	padding: 3;
 }
+
+.Footer {
+	flex: 4;
+	background-color: #829295;
+	border: 1px solid #777777;
+	margin: 5;
+	padding:3;
+}
 </style>
 </head>
 
@@ -217,6 +225,12 @@ MostPlayedBands("WMMS", "1");
 print "<br>Overall Most Played Bands - WMMS 100.7<br />";
 MostPlayedBands("WMMS", "0");
 ?>
+	</div>
+</div>
+
+<div class="wrapper">
+	<div class="Footer">
+<center><img src="http://www.pngall.com/wp-content/uploads/2016/04/Github-Free-PNG-Image.png" border="0" height="32" width="32"><p>This project can be found on <a href="https://github.com/deetoo/RadioNerd">GitHub</a></p></center>
 	</div>
 </div>
 
