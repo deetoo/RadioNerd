@@ -3,7 +3,7 @@
 // function that takes a 'type' argument, ie: Song, or Band, and the id integer for it, 
 // which gets translated into the actual song name, or band name.
 function Translate($type, $which) {
-require("c.php");
+require("../c.php");
 $mysqli = new mysqli('localhost', $uname, $pass, $db );
         if( $mysqli->connect_error ) {
         die('Connect error: ' . $mysqli->connect_errno . ' : ' . $mysqli->connect_error );
@@ -24,7 +24,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 
 
 function BandCount( $station, $option ) { // option 0 = all time, 1 = yesterday
-require("c.php");
+require("../c.php");
 print "<table>\n<tr>";
 
 
@@ -50,7 +50,7 @@ print "<td>$numberofBands</td><td>unique bands</td><td>$when</td></tr></table>\n
 }
 
 function SongCount( $station, $option ) { // option 0 = all time, 1 = yesterday
-require("c.php");
+require("../c.php");
 print "<table>\n<tr>";
 
 
@@ -77,7 +77,7 @@ print "<td>$numberofSongs</td><td>unique songs</td><td>$when</td></tr></table>\n
 
 
 function DistinctSongs() {
-require("c.php");
+require("../c.php");
 print "<table>\n<tr>";
 $mysqli = new mysqli('localhost', $uname, $pass, $db );
         if( $mysqli->connect_error ) {
@@ -93,7 +93,7 @@ print "<td>$numberofSongs</td><td>unique songs</td></tr></table>\n";
 
 
 function FirstLast($station) {
-require("c.php");
+require("../c.php");
 
 print "<table>\n";
 print "<tr>\n<th>First and Last Song</th>\n";
@@ -143,7 +143,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 
 
 function LastTen( $station ) {
-require("c.php");
+require("../c.php");
 
 $count="1";
 
@@ -182,7 +182,7 @@ print "</tr>\n";
 }
 
 function MostPlayedBands( $station, $option ) {
-require("c.php");
+require("../c.php");
 
 $count="1";
 
@@ -228,7 +228,7 @@ $mysqli = new mysqli('localhost', $uname, $pass, $db );
 
 function MostPlayedSongs( $station, $option ) {
 
-require("c.php");
+require("../c.php");
 
 
 $count="1";
