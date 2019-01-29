@@ -7,7 +7,7 @@
 	 * How To Use:
 	 * https://medium.com/riow/deploy-to-production-server-with-git-using-php-ab69b13f78ad
 	 */
-	// The commands
+	// The commands (hopefully work now.)
 	$commands = array(
 		'echo $PWD',
 		'whoami',
