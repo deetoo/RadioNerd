@@ -116,7 +116,7 @@ include_once("functions.php");
 
 <div class="wrapper">
      <div class="FirstLast">
-	Artist / Song
+	Artist Data / Song Data
      </div>
 </div>
 
