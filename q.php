@@ -116,7 +116,7 @@ include_once("functions.php");
 
 <div class="wrapper">
      <div class="FirstLast">
-
+coming soon!
      </div>
 </div>
 
