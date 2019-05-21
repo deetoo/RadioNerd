@@ -11,6 +11,10 @@ day in and day out right?
 So we each set out to both scrape the data, and then push it into a database, we collaborated on ideas, but implemented our own 
 solutions. After the initial data was collected, we discussed ways of optimizing, and potential for more custom querying of the data.
 
+***update***
+After 6 months of collecting data, it turns out my estimate of 1400 songs was pretty close, as of May 21, 2019, 1347 unique songs have been played since I started collecting the data on Dec, 06, 2018..
+
+
 # The Lowdown
 So, was I right? Is my Classic Rock station playing the same stuff over and over?
 Well, the data doesn't lie.
